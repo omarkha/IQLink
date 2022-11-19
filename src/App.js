@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import ProfilePage from "./pages/ProfilePage";
+import Navbar from "./components/Navbar";
+import { SiMessenger } from "react-icons/si";
+import Messenger from "./components/Messenger";
+import { useState } from "react";
 
 function App() {
+  const [messCollapsed, setMessCollapsed] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <ProfilePage />
+      <Messenger />
     </div>
   );
 }
