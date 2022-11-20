@@ -1,6 +1,8 @@
 import React from "react";
-
-const Navbar = () => {
+import { Link } from "react-router-dom";
+import { logIn, logOut } from "../store/actions/LoginActions";
+import { connect } from "react-redux";
+const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
@@ -15,45 +17,69 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <h3>IQLink</h3>
-        </a>
+        </Link>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <input id="nav-searchbar" type="text" placeholder="Search IQLink" />
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/jobs">
                 Jobs
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/teams">
                 Teams
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/training">
                 Training
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/projects">
                 Projects
-              </a>
+              </Link>
             </li>
           </ul>
           <ul id="right-nav" className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Settings
-              </a>
-            </li>
-            <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Profile
-              </a>
-            </li>
+            {props.loginState.logged_in ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/settings">
+                  Settings
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link to="/signup">
+                  <button id="nav-login-button">Sign Up</button>
+                </Link>
+              </li>
+            )}
+
+            {props.loginState.logged_in ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">
+                  Profile
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <button id="nav-login-button" onClick={() => props.login()}>
+                  Sign In
+                </button>
+              </li>
+            )}
+            {props.loginState.logged_in ? (
+              <li className="nav-item">
+                <button id="nav-login-button" onClick={() => props.logout()}>
+                  Sign Out
+                </button>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
@@ -61,4 +87,16 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { messengerState: state.messengerState, loginState: state.loginState };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    login: () => dispatch(logIn()),
+    logout: () => dispatch(logOut()),
+  };
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Navbar);

@@ -7,6 +7,7 @@ const PostsSection = () => {
       <div className="container">
         <div className="posts">
           <Post />
+          <Post />
         </div>
       </div>
     </div>

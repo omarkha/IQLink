@@ -17,10 +17,12 @@ nav {
   margin: 0;
   padding: 0;
   position: sticky;
+  top: 0;
 }
 
 .navbar {
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -145,18 +147,16 @@ header {
 }
 
 .posts {
-  background: rgb(255, 255, 255);
   margin: 20px 0;
-  padding: 12px 34px;
-  overflow: hidden;
   border-radius: 12px;
 }
 
 .post {
-  background: rgb(240, 240, 240);
+  background: #fff;
+  margin: 12px auto;
   padding: 12px;
   border-radius: 12px;
-  border: 1px solid rgb(25, 25, 25);
+  border: 1px solid rgb(160, 160, 160);
   border-image: linear-gradient(
       45deg,
       rgb(25, 101, 240),
@@ -164,6 +164,60 @@ header {
       rgb(25, 160, 240)
     ),
     4;
+}
+
+.post .post-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 0;
+  gap: 20px;
+}
+
+.post .post-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.post .post-top .post-origin {
+  display: flex;
+  flex-direction: row;
+  margin-right: 21px;
+}
+
+#post-profile-picture {
+  width: 34px;
+  height: 34px;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 13px;
+}
+
+.post-comment {
+  border: 1px solid rgb(101, 160, 240);
+  padding: 12px;
+  margin: 12px auto;
+}
+
+.comment-content {
+  font-size: 16px;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 7px;
+}
+
+.post h5 {
+  font-size: 13px;
+}
+
+.post textarea {
+  margin-top: 20px;
+  width: 100%;
+  max-height: 144px;
+  height: 55px;
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 55px;
 }
 
 .post h3 {
@@ -415,4 +469,109 @@ header {
   background: #fff;
   border-radius: 12px;
   margin: 20px;
+}
+
+.main-header {
+  padding: 55px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-header h1 {
+  background-image: linear-gradient(45deg, rgb(25, 240, 25), rgb(15, 15, 15));
+  text-shadow: 0 0 7px rgb(255, 255, 255);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-header-info-buttons button {
+  padding: 7px 20px;
+  margin: 0 12px;
+}
+
+#nav-login-button {
+  margin-top: 7px;
+  margin-left: 7px;
+}
+
+.start-a-post {
+  background-color: #fff;
+  width: 610px;
+  margin: 20px auto;
+  border-radius: 12px;
+}
+.start-a-post-top {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+.start-a-post textarea {
+  width: 92%;
+  min-height: 55px;
+  max-width: 610px;
+  padding: 7px;
+  max-height: 233px;
+}
+
+.start-a-post-profile-picture {
+  background-size: cover;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.start-a-post-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.start-a-post-bottom ul {
+  font-size: 20px;
+  display: flex;
+  gap: 33px;
+}
+.start-a-post-bottom ul li {
+  font-size: 20px;
+}
+
+.feed-posts {
+  width: 610px;
+  margin: 0 auto;
+}
+
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 610px;
+  margin: 34px auto;
+  background-color: rgba(15, 15, 15, 0.15);
+  padding: 20px;
+}
+
+.sign-up-form input[type="text"] {
+  padding: 7px;
+  border-radius: 7px;
+  border: 1px solid rgb(215, 215, 215);
+  width: 377px;
+}
+
+.sign-up-form input[type="password"] {
+  padding: 7px;
+  border-radius: 7px;
+  border: 1px solid rgb(215, 215, 215);
+  width: 377px;
 }

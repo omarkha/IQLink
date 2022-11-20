@@ -4,6 +4,7 @@ import {
   collapseMessenger,
   showMessenger,
 } from "../store/actions/MessengerActions";
+
 import MessengerContact from "./MessengerContact";
 const Messenger = (props) => {
   if (props.messengerState.collapsed) {
@@ -39,7 +40,7 @@ const Messenger = (props) => {
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return { messengerState: state.messengerState };
+  return { messengerState: state.messengerState, loginState: state.loginState };
 };
 
 const mapActionsToProps = (dispatch) => {
