@@ -26,8 +26,7 @@ const HomePageFeed = () => {
         </div>
       </div>
       <section className="feed-posts">
-        <Post />
-        <Post />
+        <Post /> <Post />
         <Post />
       </section>
     </div>
