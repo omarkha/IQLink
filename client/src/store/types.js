@@ -1,0 +1,16 @@
+export const SELECT_MAIN = "SELECT_MAIN";
+export const SELECT_PROJECT = "SELECT_PROJECT";
+export const SELECT_TEAMS = "SELECT_TEAMS";
+export const SELECT_FOLLOWING = "SELECT_FOLLOWING";
+
+export const COLLAPSE_MESSENGER = "COLLAPSE_MESSENGER";
+export const SHOW_MESSENGER = "SHOW_MESSENGER";
+
+export const LOG_IN = "LOG_IN";
+export const LOG_OUT = "LOG_OUT";
+
+export const EXIT_MESSENGER_BOX = "EXIT_MESSENGER_BOX";
+export const OPEN_MESSENGER_BOX = "OPEN_MESSENGER_BOX";
+
+export const SHOW_MODAL = "SHOW_MODAL";
+export const HIDE_MODAL = "HIDE_MODAL";
