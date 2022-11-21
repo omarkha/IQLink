@@ -107,6 +107,10 @@
     "webidl-conversions": "^7.0.0",
     "whatwg-url": "^11.0.0"
   },
+  "engines": {
+    "npm": "8.12.1",
+    "node": "v16.15.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
