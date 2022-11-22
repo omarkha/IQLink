@@ -11,7 +11,7 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-
+app.use(express.static(`${__dirname}/client/build`));
 // importing routes
 const userRoutes = require("./routes/users");
 const postRoutes = require("./routes/posts");
