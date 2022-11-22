@@ -9,7 +9,10 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const SignInModal = (props) => {
   const uri =
-    process.env.NODE_ENV == "production" ? null : "http://localhost:5000";
+    process.env.NODE_ENV == "production"
+      ? "https://protected-harbor-68966.heroku.com"
+      : "http://localhost:5000";
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");

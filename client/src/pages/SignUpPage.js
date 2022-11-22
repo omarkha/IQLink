@@ -5,7 +5,9 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   const uri =
-    process.env.NODE_ENV == "production" ? null : "http://localhost:5000";
+    process.env.NODE_ENV == "production"
+      ? "https://protected-harbor-68966.heroku.com"
+      : "http://localhost:5000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
