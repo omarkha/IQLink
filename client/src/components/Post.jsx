@@ -1,5 +1,5 @@
 import React from "react";
-import defaultImage from "../assets/defaultProfileImage.jpg";
+import default_picture from "../assets/defaultProfileImage.jpg";
 import mypicture from "../assets/mypicture.jpg";
 import PostComment from "./PostComment";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -11,13 +11,14 @@ const Post = (props) => {
     return jwt(localStorage.getItem("token"));
   };
 
+  const profilePictureStyle = user ? default_picture : default_picture;
   return (
     <div className="post">
       <div className="post-top">
         <div className="post-origin">
           <div
             id="post-profile-picture"
-            style={{ backgroundImage: `url(${mypicture})` }}
+            style={{ backgroundImage: `url(${profilePictureStyle})` }}
           ></div>
           <div className="col text-start">
             <h5 className=" my-0 py-0">Omar Khalil</h5>

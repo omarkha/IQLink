@@ -1,20 +1,28 @@
 import React, { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const AboutSection = () => {
   const [collapsed, setCollapsed] = useState(true);
 
   const style = collapsed ? { height: "200px" } : { height: "fit-content" };
+
+  const { user } = useAuthContext();
   return (
     <div className="about-section">
       <div className="container">
         <div className="about-collapsable" style={style}>
-          <h4
-            className="section-title"
+          <h4 className="section-title">
+            About
+            {user ? (
+              <button className="bg-warning text-dark">Edit</button>
+            ) : null}
+          </h4>
+          <h5
+            style={{ cursor: "pointer" }}
             onClick={() => setCollapsed(!collapsed)}
           >
-            About
-          </h4>
-
+            See More
+          </h5>
           <p>
             Easy going and optimistic Software Developer who's comfortable
             working with both, Object-Oriented Programming and Procedural
