@@ -30,12 +30,11 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
-  });
-}
+app.use(express.static("build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
+
 // use routes
 
 app.use("/api/users", userRoutes);
