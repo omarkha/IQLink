@@ -21,8 +21,11 @@ app.use(bodyParser.json());
 
 // connecting to Database
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+let dbUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.ATLAS_URI
+    : "mongodb://127.0.0.1:27017/iqlink";
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
 
