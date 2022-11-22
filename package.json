@@ -106,6 +106,7 @@
     "vary": "^1.1.2",
     "webidl-conversions": "^7.0.0",
     "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0",
     "whatwg-url": "^11.0.0"
   },
   "engines": {
