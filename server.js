@@ -29,16 +29,15 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
+// use routes
+
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 app.use(express.static("build"));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
-
-// use routes
-
-app.use("/api/users", userRoutes);
-app.use("/api/posts", postRoutes);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
