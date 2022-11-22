@@ -10,7 +10,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const SignInModal = (props) => {
   const uri =
     process.env.NODE_ENV == "production"
-      ? "https://iraqilink.heroku.com"
+      ? "https://iraqilink.herokuapp.com"
       : "http://localhost:5000";
 
   const navigate = useNavigate();
