@@ -19,8 +19,11 @@ import MessengerBox from "./components/MessengerBox";
 import { hideModal, showModal } from "./store/actions/loginModelAction";
 import SignInModal from "./components/SignInModal";
 import SignInPage from "./pages/SignInPage";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App(props) {
+  const { user } = useAuthContext();
+
   return (
     <Router>
       <div className="App">
@@ -31,10 +34,8 @@ function App(props) {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
         </Routes>
-        {props.loginState.logged_in ? <Messenger /> : null}
-        {props.loginState.logged_in && !props.messengerBoxState.collapsed ? (
-          <MessengerBox />
-        ) : null}
+        {user ? <Messenger /> : null}
+        {user && !props.messengerBoxState.collapsed ? <MessengerBox /> : null}
         <Footer />
       </div>
       {props.loginModalState.shown ? <SignInModal /> : null}

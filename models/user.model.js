@@ -14,30 +14,35 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    title: {
+      type: String,
+      maxlength: 40,
+      default: "",
+    },
     bio: {
       type: String,
-      required: false,
       maxlength: 1000,
+      default: "",
     },
     about: {
       type: String,
-      required: false,
       maxlength: 3000,
+      default: "",
     },
     city: {
       type: String,
-      required: false,
       trim: true,
+      default: "",
     },
     state: {
       type: String,
-      required: false,
       trim: true,
+      default: "",
     },
     country: {
       type: String,
-      required: false,
       trim: true,
+      default: "",
     },
     password: {
       type: String,
@@ -53,11 +58,11 @@ const userSchema = new Schema(
     },
     profile_image: {
       type: String,
-      required: false,
+      default: "",
     },
     banner_image: {
       type: String,
-      required: false,
+      default: "",
     },
     teams: [{ type: Schema.Types.ObjectId, ref: "Team" }],
     education: [{ type: Schema.Types.ObjectId, ref: "Education" }],

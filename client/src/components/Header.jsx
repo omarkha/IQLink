@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import doha from "../assets/dohaskyline.jpg";
 import default_picture from "../assets/defaultProfileImage.jpg";
 import { connect } from "react-redux";
@@ -11,7 +11,8 @@ import {
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
 import jwt from "jwt-decode";
-
+import EditInfo from "./components-edit/EditInfo";
+import EditBio from "./components-edit/EditBio";
 const Header = (props) => {
   const uri =
     process.env.NODE_ENV == "production"
@@ -23,11 +24,14 @@ const Header = (props) => {
 
   const { user } = useAuthContext();
 
+  const [userData, setUserData] = useState({});
   const fetchUserData = async () => {
     try {
-      await axios
-        .get(`${uri}/api/users/me/${jwt(localStorage.getItem("token")).id}`)
-        .then((res) => alert(res));
+      const res = await axios.get(
+        `${uri}/api/users/me/${jwt(localStorage.getItem("token")).id}`
+      );
+      console.log(res);
+      setUserData(res.data);
     } catch (error) {
       console.log("fetchusererror", error);
     }
@@ -37,6 +41,18 @@ const Header = (props) => {
     console.log("herrr: ", jwt(localStorage.getItem("token")).id);
     fetchUserData();
   }, []);
+
+  const [showEditInfo, setShowEditInfo] = useState(false);
+
+  const onHideEditInfo = () => {
+    setShowEditInfo(false);
+  };
+
+  const [showEditBio, setShowEditBio] = useState(false);
+
+  const onHideEditBio = () => {
+    setShowEditBio(false);
+  };
 
   const profilePictureStyle = user ? default_picture : default_picture;
   return (
@@ -62,15 +78,22 @@ const Header = (props) => {
                 ) : null}
               </div>
 
-              <h1>Omar Khalil</h1>
-              <h3 className="text-muted">Software Engineer | ENFJ 3w4</h3>
-              <h5 className="text-muted">New Paltz, NY, USA</h5>
-              <h5 className="text-primary">
-                https://omarkhalil34v.netlify.app
+              <h1>
+                {user ? userData.first_name + " " + userData.last_name : null}{" "}
+              </h1>
+              <h3 className="text-muted">{userData.title}</h3>
+              <h5 className="text-muted">
+                {userData.city + " " + userData.state + " " + userData.country}
               </h5>
+              <h5 className="text-primary">{userData.email}</h5>
               <div className="main-info-buttons">
                 {user ? (
-                  <button className="bg-warning text-dark">Edit Info</button>
+                  <button
+                    className="bg-warning text-dark"
+                    onClick={() => setShowEditInfo(true)}
+                  >
+                    Edit Info
+                  </button>
                 ) : null}
                 <button>contact info</button>
                 <button>Message</button>
@@ -79,13 +102,14 @@ const Header = (props) => {
             </div>
             <div className="bio">
               {user ? (
-                <button className="bg-warning text-dark">Edit Bio</button>
+                <button
+                  className="bg-warning text-dark"
+                  onClick={() => setShowEditBio(true)}
+                >
+                  Edit Bio
+                </button>
               ) : null}
-              <p>
-                Optimistic and Enthusiastic Software Engineering, familiar with
-                OOP and Procedural Programming, RESTful APIs. and a multitude of
-                technologies.
-              </p>
+              <p>{userData.bio}</p>
             </div>
           </div>{" "}
           <div className="header-nav">
@@ -118,13 +142,20 @@ const Header = (props) => {
           </div>
         </div>
       </div>
+
+      {showEditInfo ? (
+        <EditInfo onHideEditInfo={onHideEditInfo} user={userData} />
+      ) : null}
+      {showEditBio ? (
+        <EditBio onHideEditBio={onHideEditBio} user={userData} />
+      ) : null}
     </header>
   );
 };
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return { menuState: state.menuState, userState: state.userState };
+  return { menuState: state.menuState, loginState: state.loginState };
 };
 
 const mapActionsToProps = (dispatch) => {

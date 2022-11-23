@@ -67,16 +67,21 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, first_name, last_name, email } = await User.findById(
-    req.params.id
-  );
+  const id = req.params.id;
+  const user = await User.findById(id);
 
-  res.status(200).json({
-    id: _id,
-    first_name,
-    last_name,
-    email,
-  });
+  res.status(200).json(user);
+});
+
+const updateUser = asyncHandler(async (req, res) => {
+  const updates = req.body;
+  const id = req.body.id;
+  try {
+    const result = await User.findByIdAndUpdate(id, updates);
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const generateToken = (id) => {
@@ -87,4 +92,5 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
+  updateUser,
 };

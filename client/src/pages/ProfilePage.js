@@ -20,6 +20,7 @@ import { MdInsertPhoto } from "react-icons/md";
 import { useAuthContext } from "../hooks/useAuthContext";
 import jwt from "jwt-decode";
 import axios from "axios";
+import { logIn, logOut } from "../store/actions/LoginActions";
 const ProfilePage = (props) => {
   const uri =
     process.env.NODE_ENV == "production"
@@ -132,7 +133,7 @@ const ProfilePage = (props) => {
 
 const mapStateToProps = (state) => {
   console.log(state);
-  return { menuState: state.menuState };
+  return { menuState: state.menuState, loginState: state.loginState };
 };
 
 const mapActionsToProps = (dispatch) => {
@@ -141,6 +142,8 @@ const mapActionsToProps = (dispatch) => {
     selectprojects: () => dispatch(selectProjects()),
     selectteams: () => dispatch(selectTeams()),
     selectfollowing: () => dispatch(selectFollowing()),
+    login: () => dispatch(logIn()),
+    logout: () => dispatch(logOut()),
   };
 };
 
