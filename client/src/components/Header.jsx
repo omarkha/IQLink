@@ -13,6 +13,7 @@ import axios from "axios";
 import jwt from "jwt-decode";
 import EditInfo from "./components-edit/EditInfo";
 import EditBio from "./components-edit/EditBio";
+import EditProfilePicture from "./components-edit/EditProfilePicture";
 const Header = (props) => {
   const uri =
     process.env.NODE_ENV == "production"
@@ -54,7 +55,14 @@ const Header = (props) => {
     setShowEditBio(false);
   };
 
-  const profilePictureStyle = user ? default_picture : default_picture;
+  const [showEditProfilePicture, setShowEditProfilePicture] = useState(false);
+
+  const onHideEditProfilePicture = () => {
+    setShowEditProfilePicture(false);
+  };
+
+  const profilePictureStyle =
+    userData.profile_image !== "" ? userData.profile_image : default_picture;
   return (
     <header className="profile-header">
       <div className="header-info">
@@ -64,7 +72,7 @@ const Header = (props) => {
             style={{ backgroundImage: `url(${doha})` }}
           >
             {user ? (
-              <button className="bg-warning text-dark">Edit Cover</button>
+              <button className="bg-primary text-light">Edit Cover</button>
             ) : null}
           </div>
           <div className="main-info">
@@ -74,7 +82,12 @@ const Header = (props) => {
                 style={{ backgroundImage: `url(${profilePictureStyle})` }}
               >
                 {user ? (
-                  <button className="bg-warning text-dark">Change Photo</button>
+                  <button
+                    className="bg-primary text-light"
+                    onClick={() => setShowEditProfilePicture(true)}
+                  >
+                    Change Photo
+                  </button>
                 ) : null}
               </div>
 
@@ -89,7 +102,7 @@ const Header = (props) => {
               <div className="main-info-buttons">
                 {user ? (
                   <button
-                    className="bg-warning text-dark"
+                    className="bg-primary text-light"
                     onClick={() => setShowEditInfo(true)}
                   >
                     Edit Info
@@ -103,7 +116,7 @@ const Header = (props) => {
             <div className="bio">
               {user ? (
                 <button
-                  className="bg-warning text-dark"
+                  className="bg-primary text-light"
                   onClick={() => setShowEditBio(true)}
                 >
                   Edit Bio
@@ -148,6 +161,12 @@ const Header = (props) => {
       ) : null}
       {showEditBio ? (
         <EditBio onHideEditBio={onHideEditBio} user={userData} />
+      ) : null}
+      {showEditProfilePicture ? (
+        <EditProfilePicture
+          onHideEditProfilePicture={onHideEditProfilePicture}
+          user={userData}
+        />
       ) : null}
     </header>
   );

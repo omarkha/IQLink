@@ -828,3 +828,9 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.profile-image-viewer {
+  width: 144px;
+  height: 144px;
+  background-size: cover;
+}
