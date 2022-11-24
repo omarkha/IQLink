@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AboutSection from "../components/AboutSection";
 import EducationSection from "../components/EducationSection";
@@ -21,6 +21,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import jwt from "jwt-decode";
 import axios from "axios";
 import { logIn, logOut } from "../store/actions/LoginActions";
+import EditAbout from "../components/components-edit/EditAbout";
 const ProfilePage = (props) => {
   const uri =
     process.env.NODE_ENV == "production"

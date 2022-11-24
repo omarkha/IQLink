@@ -111,7 +111,7 @@ nav {
 .profile-header .header-banner {
   background-size: cover;
   background-position: center;
-  background-position-y: 610px;
+  background-position-y: bottom;
   width: 100%;
   height: 300px;
   border-radius: 20px;
@@ -786,18 +786,22 @@ footer {
 
 .modal-bg {
   position: fixed;
+  left: 0;
   top: 0;
   z-index: 4;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgba(25, 25, 25, 0.62);
 }
 
 .modal-content {
+  align-self: center;
+  justify-self: center;
   z-index: 5;
   background-color: #fff;
   top: 15%;
-  width: 377px;
+  right: 25%;
+  width: 500px;
   position: fixed;
   padding: 20px;
   border-radius: 15px;
@@ -831,6 +835,12 @@ footer {
 
 .profile-image-viewer {
   width: 144px;
+  height: 144px;
+  background-size: cover;
+}
+
+.cover-image-viewer {
+  width: 100%;
   height: 144px;
   background-size: cover;
 }

@@ -14,6 +14,7 @@ import jwt from "jwt-decode";
 import EditInfo from "./components-edit/EditInfo";
 import EditBio from "./components-edit/EditBio";
 import EditProfilePicture from "./components-edit/EditProfilePicture";
+import EditCoverPicture from "./components-edit/EditCoverPicture";
 const Header = (props) => {
   const uri =
     process.env.NODE_ENV == "production"
@@ -61,18 +62,31 @@ const Header = (props) => {
     setShowEditProfilePicture(false);
   };
 
+  const [showEditCoverPicture, setShowEditCoverPicture] = useState(false);
+
+  const onHideEditCoverPicture = () => {
+    setShowEditCoverPicture(false);
+  };
+
   const profilePictureStyle =
     userData.profile_image !== "" ? userData.profile_image : default_picture;
+  const coverPictureStyle =
+    userData.banner_image !== "" ? userData.banner_image : default_picture;
   return (
     <header className="profile-header">
       <div className="header-info">
         <div className="container">
           <div
             className="header-banner"
-            style={{ backgroundImage: `url(${doha})` }}
+            style={{ backgroundImage: `url(${coverPictureStyle})` }}
           >
             {user ? (
-              <button className="bg-primary text-light">Edit Cover</button>
+              <button
+                className="bg-primary text-light"
+                onClick={() => setShowEditCoverPicture(true)}
+              >
+                Edit Cover
+              </button>
             ) : null}
           </div>
           <div className="main-info">
@@ -80,17 +94,15 @@ const Header = (props) => {
               <div
                 className="profile-picture"
                 style={{ backgroundImage: `url(${profilePictureStyle})` }}
-              >
-                {user ? (
-                  <button
-                    className="bg-primary text-light"
-                    onClick={() => setShowEditProfilePicture(true)}
-                  >
-                    Change Photo
-                  </button>
-                ) : null}
-              </div>
-
+              ></div>
+              {user ? (
+                <button
+                  className="bg-primary text-light"
+                  onClick={() => setShowEditProfilePicture(true)}
+                >
+                  Change Photo
+                </button>
+              ) : null}
               <h1>
                 {user ? userData.first_name + " " + userData.last_name : null}{" "}
               </h1>
@@ -108,7 +120,7 @@ const Header = (props) => {
                     Edit Info
                   </button>
                 ) : null}
-                <button>contact info</button>
+
                 <button>Message</button>
                 <button>follow</button>
               </div>
@@ -165,6 +177,12 @@ const Header = (props) => {
       {showEditProfilePicture ? (
         <EditProfilePicture
           onHideEditProfilePicture={onHideEditProfilePicture}
+          user={userData}
+        />
+      ) : null}
+      {showEditCoverPicture ? (
+        <EditCoverPicture
+          onHideEditCoverPicture={onHideEditCoverPicture}
           user={userData}
         />
       ) : null}
